@@ -108,7 +108,7 @@ impl Solution {
             let mid = (left + right) / 2;
             let num = nums[mid as usize];
             if num == target {
-                return mid as i32;
+                return mid;
             }
             if num < target {
                 left = mid + 1;
