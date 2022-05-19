@@ -146,3 +146,72 @@ impl Solution {
     }
 }
 // @lc code=end
+
+/*
+ * @lc app=leetcode.cn id=66 lang=rust
+ *
+ * [66] 加一
+ */
+
+// @lc code=start
+impl Solution {
+    pub fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
+        let mut add = true;
+        let len = digits.len();
+        let mut index = len - 1;
+        while add {
+            let mut num = digits[index];
+            num = num + 1;
+            if num == 10 {
+                add = true;
+                num = 0;
+            } else {
+                add = false;
+            }
+            digits[index] = num;
+            if index == 0 {
+                break;
+            }
+            index -= 1;
+        }
+        if !add {
+            return digits;
+        }
+        let mut digits = vec![0i32; len + 1];
+        digits[0] = 1;
+        return digits;
+    }
+}
+// @lc code=end
+
+/*
+ * @lc app=leetcode.cn id=88 lang=rust
+ *
+ * [88] 合并两个有序数组
+ */
+
+// @lc code=start
+impl Solution {
+    pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
+        let mut index = m + n - 1;
+        let mut m_index = m - 1;
+        let mut n_index = n - 1;
+        while m_index >= 0 && n_index >= 0 {
+            let m_num = nums1[m_index as usize];
+            let n_num = nums2[n_index as usize];
+            if m_num > n_num {
+                nums1[index as usize] = m_num;
+                m_index -= 1;
+            } else {
+                nums1[index as usize] = n_num;
+                n_index -= 1;
+            }
+            index -= 1;
+        }
+        while n_index >= 0 {
+            nums1[n_index as usize] = nums2[n_index as usize];
+            n_index -= 1;
+        }
+    }
+}
+// @lc code=end
