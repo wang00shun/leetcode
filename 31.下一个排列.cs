@@ -10,19 +10,26 @@ public partial class Solution
     public void NextPermutation(int[] nums)
     {
         int length = nums.Length;
-        for (int i = length - 1; i >= 0; i--)
+        for (int i = length - 2; i >= 0; i--)
         {
-            int numRight = nums[i];
-            for (int j = i - 1; j >= 0; j--)
+            int numLeft = nums[i];
+            int minMax = int.MaxValue;
+            int minMaxIndex = i;
+            for (int j = i + 1; j < length; j++)
             {
-                int numLeft = nums[j];
-                if (numLeft < numRight)
+                int numRight = nums[j];
+                if (numRight > numLeft && numRight < minMax)
                 {
-                    nums[j] = numRight;
-                    nums[i] = numLeft;
-                    Array.Sort(nums, j + 1, length - j - 1);
-                    return;
+                    minMax = numRight;
+                    minMaxIndex = j;
                 }
+            }
+            if (minMaxIndex != i)
+            {
+                nums[i] = minMax;
+                nums[minMaxIndex] = numLeft;
+                Array.Sort(nums, i + 1, length - i - 1);
+                return;
             }
         }
         Array.Sort(nums);
