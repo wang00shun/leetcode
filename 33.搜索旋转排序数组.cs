@@ -10,7 +10,6 @@ public partial class Solution
     public int Search(int[] nums, int target)
     {
         int len = nums.Length;
-        bool front = false;
         int firstNum = nums[0];
         int lastNum = nums[len - 1];
         if (nums[len - 1] == target)
@@ -33,7 +32,7 @@ public partial class Solution
             }
             if (target > midNum)
             {
-                if (target > lastNum)
+                if (target > lastNum && midNum < lastNum)
                 {
                     right = mid - 1;
                 }
@@ -44,7 +43,7 @@ public partial class Solution
             }
             else
             {
-                if (target < firstNum)
+                if (target < firstNum && midNum > firstNum)
                 {
                     left = mid + 1;
                 }
