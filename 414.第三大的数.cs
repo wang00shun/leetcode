@@ -9,7 +9,7 @@ public partial class Solution
 {
     public int ThirdMax(int[] nums)
     {
-
+        return 0;
     }
 }
 // @lc code=end
