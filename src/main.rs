@@ -1,3 +1,5 @@
+use std::num;
+
 fn main() {
     let nums = vec![1, 3, 5, 6];
     let target = 0;
@@ -6,4 +8,5 @@ fn main() {
 }
 
 struct Solution {}
+
 
