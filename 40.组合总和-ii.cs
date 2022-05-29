@@ -18,7 +18,7 @@ public partial class Solution
 
     public void Dfs(int[] candidates, int target, List<int> store, IList<IList<int>> results, int index)
     {
-        if (target == 0)
+        if (target == 0 && store.Count != 0)
         {
             results.Add(store.ToList());
             return;
@@ -29,17 +29,17 @@ public partial class Solution
         }
         if (target > 0)
         {
-            Dfs(candidates, target, store, results, index + 1);
-            if (store.Count == 0 && index != 0 && candidates[index] == candidates[index - 1])
-            {
-                return;
-            }
-
             store.Add(candidates[index]);
             Dfs(candidates, target - candidates[index], store, results, index + 1);
             store.RemoveAt(store.Count - 1);
+
+            do
+            {
+                index++;
+            } while (index < candidates.Length && candidates[index] == candidates[index - 1]);
+
+            Dfs(candidates, target, store, results, index);
         }
     }
 }
 // @lc code=end
-
