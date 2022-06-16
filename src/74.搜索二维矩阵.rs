@@ -1,9 +1,3 @@
-use std::num;
-
-fn main() {}
-
-struct Solution {}
-
 /*
  * @lc app=leetcode.cn id=74 lang=rust
  *
