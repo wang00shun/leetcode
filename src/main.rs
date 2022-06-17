@@ -3,41 +3,51 @@ use std::num;
 fn main() {}
 
 struct Solution {}
-
 /*
- * @lc app=leetcode.cn id=74 lang=rust
+ * @lc app=leetcode.cn id=78 lang=rust
  *
- * [74] 搜索二维矩阵
+ * [78] 子集
  */
 
 // @lc code=start
 impl Solution {
-    pub fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
-        let row_count = matrix.len();
-        let column_count = matrix[0].len();
-        let mut left = 0;
-        let mut right = row_count * column_count - 1;
-        while left <= right {
-            let mid = (left + right) / 2;
-            let column_index = mid % column_count;
-            let row_index = mid / column_count;
-            let num = matrix[row_index][column_index];
-            if num == target {
-                return true;
+    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        return Solution::subsets2(nums);
+    }
+    pub fn subsets2(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut result: Vec<Vec<i32>> = Vec::new();
+        for num in nums {
+            let result_len = result.len();
+            for result_index in 0..result_len {
+                let mut result_item = result[result_index].to_owned();
+                result_item.push(num);
+                result.push(result_item);
             }
-            if num > target {
-                if mid == 0 {
-                    return false;
-                }
-                right = mid - 1;
-            } else {
-                if mid == usize::MAX {
-                    return false;
-                }
-                left = mid + 1;
-            }
+            result.push(vec![num]);
         }
-        return false;
+        result.push(vec![]);
+        return result;
+    }
+
+    pub fn subsets1(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut result = Vec::new();
+        Solution::s(&nums, 0, &mut result);
+        result.push(Vec::new());
+        return result;
+    }
+
+    pub fn s(nums: &Vec<i32>, index: usize, result: &mut Vec<Vec<i32>>) {
+        if index >= nums.len() {
+            return;
+        }
+        Solution::s(nums, index + 1, result);
+        let len = result.len();
+        for result_index in 0..len {
+            let mut _vec = result[result_index].to_owned();
+            _vec.push(nums[index]);
+            result.push(_vec);
+        }
+        result.push(vec![nums[index]]);
     }
 }
 // @lc code=end
