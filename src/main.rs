@@ -1,53 +1,42 @@
-use std::num;
+fn main() {
+    let input: Vec<Vec<char>> = vec![
+        vec!['A', 'B', 'C', 'E'],
+        vec!['S', 'F', 'E', 'S'],
+        vec!['A', 'D', 'E', 'E'],
+    ];
+    let word = "ABCESEEEFS".to_owned();
 
-fn main() {}
+    // let mut a: u8 = 0;
+    // let entry = &mut a;
+    // *entry |= 1;
+    // *entry |= 2;
+    // *entry |= 4;
+    // *entry |= 8;
+    // println!("a:{}", a)
+}
 
 struct Solution {}
+
+use std::collections::HashMap;
+
 /*
- * @lc app=leetcode.cn id=78 lang=rust
+ * @lc app=leetcode.cn id=4 lang=rust
  *
- * [78] 子集
+ * [4] 寻找两个正序数组的中位数
  */
 
 // @lc code=start
 impl Solution {
-    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        return Solution::subsets2(nums);
-    }
-    pub fn subsets2(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        let mut result: Vec<Vec<i32>> = Vec::new();
-        for num in nums {
-            let result_len = result.len();
-            for result_index in 0..result_len {
-                let mut result_item = result[result_index].to_owned();
-                result_item.push(num);
-                result.push(result_item);
-            }
-            result.push(vec![num]);
-        }
-        result.push(vec![]);
-        return result;
-    }
-
-    pub fn subsets1(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        let mut result = Vec::new();
-        Solution::s(&nums, 0, &mut result);
-        result.push(Vec::new());
-        return result;
-    }
-
-    pub fn s(nums: &Vec<i32>, index: usize, result: &mut Vec<Vec<i32>>) {
-        if index >= nums.len() {
-            return;
-        }
-        Solution::s(nums, index + 1, result);
-        let len = result.len();
-        for result_index in 0..len {
-            let mut _vec = result[result_index].to_owned();
-            _vec.push(nums[index]);
-            result.push(_vec);
-        }
-        result.push(vec![nums[index]]);
+    pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+        let count1 = nums1.len();
+        let count2 = nums2.len();
+        let left1 = 0;
+        let right1 = count1 - 1;
+        let left2 = 0;
+        let right2 = count2 - 1;
+        let remove_count = (count1 + count2 - 1) / 2;
+        while remove_count > 0 {}
+        return 0f64;
     }
 }
 // @lc code=end
